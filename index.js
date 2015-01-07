@@ -333,7 +333,14 @@ var randomAgent = function (filter) {
     var sel = random.arr(list);
     var data = sel.data()
 
-    var agent = random.arr(data);
+    var agent;
+
+    if (typeof data == 'string') {
+        agent = data;
+    }
+    else {
+        agent = random.arr(data);
+    }
 
     return {
         'type': sel.type,
