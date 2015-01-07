@@ -1,38 +1,140 @@
+var random = {
+    num: function (min, max) {
+        return Math.floor(Math.random() * (max - min + 1)) + min;
+    },
+
+    arr: function (obj) {
+        return obj[Math.floor(Math.random() * obj.length)];
+    },
+
+    proc: function (obj) {
+        var rand = random.num(0, 100) / 100,
+            min = 0,
+            max = 0,
+            key,
+            return_val;
+
+        for (key in obj) {
+            if (obj.hasOwnProperty(key)) {
+                max = obj[key] + min;
+                return_val = key;
+
+                if (rand >= min && rand <= max) {
+                    break;
+                }
+
+                min = min + obj[key];
+            }
+        }
+
+        return return_val;
+    }
+};
+
+// @see http://tools.ietf.org/html/rfc7231#section-5.5.3
+
 var getAndroidPhoneData = function () {
     return [
-        // Android 2.1 - Nexus One - Safari 530.17
-        'Mozilla/5.0 (Linux; U; Android 2.1; en-us; Nexus One Build/ERD62) AppleWebKit/530.17 (KHTML, like Gecko) Version/4.0 Mobile Safari/530.17',
+        // engine
+        random.proc({'Mozilla':8, 'Opera':2}),
+        '/',
+        random.num(4,9),
+        '.',
+        random.num(0,99),
 
-        // Android 2.2 - HTC Evo - Mobile Safari 533.1
-        'Mozilla/5.0 (Linux; U; Android 2.2; en-us; Sprint APA9292KT Build/FRF91) AppleWebKit/533.1 (KHTML, like Gecko) Version/4.0 Mobile Safari/533.1',
+        ' (',
 
-        // Android 2.2 - HTC Incredible - Safari 533.1
-        'Mozilla/5.0 (Linux; U; Android 2.2; en-us; ADR6300 Build/FRF91) AppleWebKit/533.1 (KHTML, like Gecko) Version/4.0 Mobile Safari/533.1',
+        // system os
+        random.proc({'Linux; ':.8, '':.2}),
+        random.proc({'U; ':.9, '':.1}),
 
-        // Android 2.2 - Samsung Galaxy - Mobile Safari 533.1
-        'Mozilla/5.0 (Linux; U; Android 2.2; en-ca; GT-P1000M Build/FROYO) AppleWebKit/533.1 (KHTML, like Gecko) Version/4.0 Mobile Safari/533.1',
+        //
+        'Android ',
+        random.arr([
+            '2.3',   // Gingerbread
+            '2.3.1', // Gingerbread
+            '2.3.2', // Gingerbread
+            '2.3.4', // Gingerbread
+            '2.3.5', // Gingerbread
+            '2.3.6', // Gingerbread
+            '2.3.7', // Gingerbread
 
-        // Android 4.0.3 - Mobile Safari 534.30 - HTC Sensation
-        'Mozilla/5.0 (Linux; U; Android 4.0.3; de-ch; HTC Sensation Build/IML74K) AppleWebKit/534.30 (KHTML, like Gecko) Version/4.0 Mobile Safari/534.30',
+            '3.0', // Honeycomb
 
-        // Android 4.0.3 - Mobile Safari 534.30 - Samsung Galaxy S II
-        'Mozilla/5.0 (Linux; U; Android 4.0.3; de-de; Galaxy S II Build/GRJ22) AppleWebKit/534.30 (KHTML, like Gecko) Version/4.0 Mobile Safari/534.30',
+            '3.1', // Honeycomb
 
-        // Android 4.0.4 - Opera 12.00
-        'Opera/9.80 (Android 4.0.4; Linux; Opera Mobi/ADR-1205181138; U; pl) Presto/2.10.254 Version/12.00',
+            '3.2',   // Honeycomb
+            '3.2.1', // Honeycomb
+            '3.2.2', // Honeycomb
+            '3.2.3', // Honeycomb
+            '3.2.4', // Honeycomb
+            '3.2.5', // Honeycomb
+            '3.2.6', // Honeycomb
 
-        // Android 4.1.2 - Chrome 30.0
-        'Mozilla/5.0 (Linux; Android 4.1.2; SHV-E250S Build/JZO54K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/30.0.1599.82 Mobile Safari/537.36',
+            '4.0',   // Ice Cream Sandwich
+            '4.0.1', // Ice Cream Sandwich
+            '4.0.2', // Ice Cream Sandwich
+            '4.0.3', // Ice Cream Sandwich
+            '4.0.4', // Ice Cream Sandwich
 
-        // Android 4.2 - Firefox 19.0
-        'Mozilla/5.0 (Android 4.2; rv:19.0) Gecko/20121129 Firefox/19.0',
+            '4.1',   // Jelly Bean
+            '4.1.1', // Jelly Bean
+            '4.1.2', // Jelly Bean
 
-        // Android 4.3 - AppleWebKit/536.23
-        'Mozilla/5.0 (Linux; U; Android 4.3; en-us; sdk Build/MR1) AppleWebKit/536.23 (KHTML, like Gecko) Version/4.3 Mobile Safari/536.23',
+            '4.2',   // Jelly Bean
+            '4.2.1', // Jelly Bean
+            '4.2.2', // Jelly Bean
 
-        // Android 4.4 - (Nexus 5) - AppleWebKit/536.23
-        'Mozilla/5.0 (Linux; Android 4.4; Nexus 5 Build/BuildID) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/30.0.0.0 Mobile Safari/537.36',
-    ];
+            '4.3',   // Jelly Bean
+            '4.3.1', // Jelly Bean
+
+            '4.4',   // KitKat
+            '4.4.1', // KitKat
+            '4.4.2', // KitKat
+            '4.4.3', // KitKat
+            '4.4.4', // KitKat
+
+            '5.0',   // Lollipop
+            '5.0.1', // Lollipop
+            '5.0.2', // Lollipop
+        ]),
+        '; ',
+
+        //
+        random.arr(['en-us', 'en-en', 'ru-ru']),
+        '; ',
+
+        // device
+        // @see http://screensiz.es/phone
+        random.arr([
+            'Sony Xperia Z',
+            'Samsung Nexus S',
+            'Nokia Lumia '+random.arr(['925','920','900','720','620','520','1020','710','800']),
+            'HTC '+random.arr(['One','Evo','Desire','Sensation']),
+            'Galaxy '+random.arr(['S IV','S III','S II','S','Note II','Note','Nexus',]),
+            'Nexus '+random.arr(['One','5']),
+            'Droid Razr',
+        ]),
+        ' ',
+
+        'Build/'+
+        random.arr(['ERD', 'FRF', 'FRO', 'IML', 'JZO'])+
+        random.num(10,99),
+
+        ') ',
+
+        //
+        'AppleWebKit/',
+        random.num(530,540) + '.' + random.num(1,50),
+        ' ',
+        '(KHTML, like Gecko)',
+        ' ',
+        'Version/4.'+random.num(1,9),
+        ' ',
+        random.proc({'Chrome/30.0.0.0 ':.2, '':.8}),
+        'Mobile Safari/'+random.num(530,540) + '.' + random.num(1,50)
+
+    ].join('')
 }
 
 var getIOsTabletData = function () {
@@ -67,8 +169,6 @@ var getIOsPhoneData = function () {
 
         // iPhone - iOS 4_2_1 - Safari 533.17.9
         'Mozilla/5.0 (iPhone; U; CPU iPhone OS 4_2_1 like Mac OS X; da-dk) AppleWebKit/533.17.9 (KHTML, like Gecko) Version/5.0.2 Mobile/8C148 Safari/6533.18.5',
-
-        'Mozilla/5.0 (iPhone; CPU iPhone OS 7_0 like Mac OS X; en-us) AppleWebKit/537.51.1 (KHTML, like Gecko) Version/7.0 Mobile/11A465 Safari/9537.53',
 
         // iPhone - iOS 5_1_1 - Chrome (crios) 19.0.1084.60
         'Mozilla/5.0 (iPhone; U; CPU iPhone OS 5_1_1 like Mac OS X; da-dk) AppleWebKit/534.46.0 (KHTML, like Gecko) CriOS/19.0.1084.60 Mobile/9B206 Safari/7534.48.3',
@@ -192,10 +292,10 @@ var randomAgent = function (filter) {
         }
     }
 
-    var sel = list[Math.floor(Math.random() * list.length)];
+    var sel = random.arr(list);
     var data = sel.data()
 
-    var agent = data[Math.floor(Math.random() * data.length)];
+    var agent = random.arr(data);
 
     return {
         'type': sel.type,
