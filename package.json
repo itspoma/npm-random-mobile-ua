@@ -1,0 +1,27 @@
+{
+  "name": "random-mobile-ua",
+  "version": "1.0.7",
+  "description": "Randomly generates mobile User-Agent",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/itspoma/npm-random-mobile-ua"
+  },
+  "keywords": [
+    "random agent",
+    "random user agent",
+    "random mobile agent",
+    "random mobile user agent",
+    "user agent",
+    "mobile user agent"
+  ],
+  "author": "itspoma",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/itspoma/npm-random-mobile-ua/issues"
+  },
+  "homepage": "https://github.com/itspoma/npm-random-mobile-ua"
+}
